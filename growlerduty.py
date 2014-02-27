@@ -72,7 +72,10 @@ class Growlerduty:
             message = " - ".join(item[1] for item in incident_json.items())
 
             if incident.status != 'triggered':
-                message = incident.last_status_change_by.name + " " + incident.status + " " + message
+                if incident.last_status_change_by is not None:
+                    message = incident.last_status_change_by.name + " " + incident.status + " " + message
+                else:
+                    message = "API " + incident.status + " " + message
             self.sendIncident(subject,message)
             time.sleep(self.config.getfloat("settings","notificationDelay"))
 
