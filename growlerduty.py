@@ -15,6 +15,7 @@ class Growlerduty:
             "cronInterval":"30",
             "growlHost": "127.0.0.1",
             "growlPass": "", 
+            "growlPort": "23053",
             "pagerdutyHost": "",
             "pagerdutyApiKey": "",
             "notificationDelay":"5",
@@ -24,7 +25,7 @@ class Growlerduty:
         self.args = self.getArgs()
 
     def run(self):
-        self.growl = gntp.notifier.GrowlNotifier(applicationName="Growlerduty",notifications=["Incident"],hostname=self.config.get("settings","growlHost"),password=self.config.get("settings","growlPass"))
+        self.growl = gntp.notifier.GrowlNotifier(applicationName="Growlerduty",notifications=["Incident"],hostname=self.config.get("settings","growlHost"),password=self.config.get("settings","growlPass"),port=self.config.get("settings","growlPort"))
         self.growl.register()
         self.checkForPages()
 
