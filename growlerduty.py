@@ -16,9 +16,6 @@ class Growlerduty(PygerMeister):
         PygerMeister.run(self)
 
     def sendIncident(self,subject,message):
-        if self.args.verbose:
-            print "Sending incident popup (%s - %s)" % (subject,message)
-
         self.growl.notify(noteType="Incident",title=subject,description=message)
 
 if __name__ == '__main__':
